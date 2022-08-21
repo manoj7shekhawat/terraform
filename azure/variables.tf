@@ -29,3 +29,7 @@ variable "kv-name" {
 variable "kv-sku" {
   type = string
 }
+
+variable "object-id" {
+  type = string
+}
