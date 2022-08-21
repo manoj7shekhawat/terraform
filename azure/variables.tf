@@ -22,6 +22,10 @@ variable "password-valid-duration" {
   type = string
 }
 
+variable "password-rotation-minutes" {
+  type = string
+}
+
 variable "kv-name" {
   type = string
 }

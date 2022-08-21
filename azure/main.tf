@@ -15,9 +15,16 @@ data "azuread_application" "app-reg" {
   depends_on = [azurerm_key_vault.key-vault]
 }
 
+resource "time_rotating" "passwd-time-rotation" {
+  rotation_minutes = var.password-rotation-minutes
+}
+
 resource "azuread_application_password" "app-pass" {
   application_object_id = data.azuread_application.app-reg.object_id
-  end_date_relative = var.password-valid-duration
+  #end_date_relative = var.password-valid-duration
+  rotate_when_changed = {
+    rotation = time_rotating.passwd-time-rotation.id
+  }
 }
 
 data "azurerm_key_vault" "kv" {
