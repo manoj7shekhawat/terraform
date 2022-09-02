@@ -12,7 +12,7 @@ resource "azuread_application" "my-app" {
 data "azuread_application" "app-reg" {
   display_name = var.app-name
   
-  depends_on = [azurerm_key_vault.key-vault]
+  depends_on = [azuread_application.my-app]
 }
 
 resource "time_rotating" "passwd-time-rotation" {
