@@ -7,6 +7,15 @@ resource "azurerm_resource_group" "rg" {
 }
 
 # VNET & Subnets
+
+resource "azurerm_network_security_group" "nsg" {
+  name                = "nsg"
+  location            = var.location
+  resource_group_name = var.rg-name
+
+  depends_on = [azurerm_resource_group.rg]
+}
+
 resource "azurerm_virtual_network" "vnet" {
   name                = var.aks-vnet-name
   location            = var.location
@@ -21,11 +30,12 @@ resource "azurerm_virtual_network" "vnet" {
   subnet {
     name           = var.aks-pod-subnet-name
     address_prefix = var.pod-subnet-address_prefix
+    security_group = azurerm_network_security_group.nsg.id
   }
 
   tags = var.tags
 
-  depends_on = [azurerm_resource_group.rg]
+  depends_on = [azurerm_network_security_group.nsg]
 }
 
 data "azurerm_subnet" "node_subnet" {
