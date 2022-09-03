@@ -169,7 +169,7 @@ resource "kubernetes_cluster_role_binding" "aks_ca_crb" {
 
 data "kubernetes_secret" "ca_sa" {
   metadata {
-    name      = var.ca_sa_name
+    name      = var.ca_sa_secret_name
     namespace = var.ca_sa_ns
   }
 
