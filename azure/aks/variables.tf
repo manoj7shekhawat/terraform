@@ -63,3 +63,27 @@ variable "aks_cluster" {
 variable "tags" {
   type = map(string)
 }
+
+variable "ca_sa_name" {
+  type = string
+}
+
+variable "ca_sa_ns" {
+  type = string
+}
+
+variable "ca_sa_secret_name" {
+  type = string
+}
+
+variable "devops_project_name" {
+  type = string
+}
+
+variable "devops_project_desc" {
+  type = string
+}
+
+variable "devops_sep_name" {
+  type = string
+}

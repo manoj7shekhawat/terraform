@@ -10,6 +10,11 @@ terraform {
       source = "hashicorp/kubernetes"
       version = "2.13.1"
     }
+
+    azuredevops = {
+      source = "microsoft/azuredevops"
+      version = "0.2.2"
+    }
   }
 
   required_version = ">= 1.2.8"
@@ -24,5 +29,9 @@ provider "azurerm" {
 }
 
 provider "kubernetes" {
+  # Configuration options
+}
+
+provider "azuredevops" {
   # Configuration options
 }
